@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import Utils from './Utils';
+import App from './components/App';
+import Utils from './components/Utils';
 
 
 beforeAll(() => {
