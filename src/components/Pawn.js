@@ -12,8 +12,9 @@ const styles = theme => ({
 
 function Pawn(props) {
   const { classes } = props;
+//   console.log(props)
   return (
-      <Button variant="fab"  mini="true" className={classes.button} onClick={props.onClick}>
+      <Button variant="fab"  mini={true} className={classes.button} onClick={props.onClick} disabled={props.isDisabled}>
         {props.value}
       </Button>
   );

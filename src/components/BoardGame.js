@@ -1,5 +1,6 @@
 import React from 'react';
 import Pawn from './Pawn';
+import Grid from 'material-ui/Grid';
 
 class BoardGame extends React.Component {
 
@@ -12,6 +13,7 @@ class BoardGame extends React.Component {
         return (
             <p className="App-intro">
                 {this.renderRows()}
+                {/* {this.renderRows()}
                 {this.renderRows()}
                 {this.renderRows()}
                 {this.renderRows()}
@@ -19,8 +21,7 @@ class BoardGame extends React.Component {
                 {this.renderRows()}
                 {this.renderRows()}
                 {this.renderRows()}
-                {this.renderRows()}
-                {this.renderRows()}
+                {this.renderRows()} */}
             </p>
         )
     }
@@ -28,20 +29,38 @@ class BoardGame extends React.Component {
 
 class Rows extends React.Component {
 
-    renderRow(props) {
+    state = {
+        currentRow: null,
+        rowsValues: {
+            // 0: ["⚽️", "⚽️", "⚽️", "⚽️"],
+            // 1: ["🏀", "🏀", "🏀", "🏀"],
+            // 2: ["🎾", "🎾", "🎾", "🎾"],
+            0: ["", "", "", ""],
+            1: ["", "", "", ""],
+            2: ["", "", "", ""],
+            // 6: ["", "", "", ""],
+            // 7: ["", "", "", ""],
+            // 8: ["", "", "", ""],
+            // 9: ["", "", "", ""]
+        },
+    }
+
+    renderRow(values) {
         return (
-            <Row />
+            <Row pawns={values} />
         );
     }
 
-
     render() {
         return (
-            <div className="board-row">
-                {this.renderRow(0)}
-                {this.renderRow(1)}
-                {this.renderRow(2)}
-                {this.renderRow(3)}
+            <div>
+                <Grid container spacing={8}>
+                    {Object.keys(this.state.rowsValues).map((key) => (
+                        <Grid item xs={12} key={key}>
+                            {this.renderRow(this.state.rowsValues[key])}
+                        </Grid>
+                    ))}
+                </Grid>
             </div>
         )
     }
@@ -49,11 +68,32 @@ class Rows extends React.Component {
 
 ///////////
 
-function Row(props) {
-    return (
-        // <Pawn color="secondary" isDisabled = "true"/>
-        <Pawn icon="🏀"/>
-    );
+class Row extends React.Component {
+
+    // state = {
+    //     pawns: Array(4).fill("🎱"),
+    // }
+
+    renderPawn(value) {
+        return (
+            <Pawn value={value} />
+        )
+
+    }
+
+    render() {
+        return (
+            <div>
+                <Grid container spacing={8}>
+                    {this.props.pawns.map((value, id) => (
+                        <Grid item xs={6} sm={3} key={id}>
+                            <p>{this.renderPawn(value)}</p>
+                        </Grid>
+                    ))}
+                </Grid>
+            </div>
+        );
+    }
 }
 
 

@@ -6,20 +6,33 @@ import Pawn from './Pawn';
 class Interactions extends React.Component {
 
     state = {
-        valueOfSelectedButton: null,
+        selectedPawnValue: null,
     }
 
-    onClickFab(i) {
+    handleClickPawn(value) {
         this.setState({
-            valueOfSelectedButton: i
+            selectedPawnValue: value
         })
     }
+
+    // handleClickCheck(value) {
+
+    // }
+
+    // handleClickResetRaw(value) {
+
+    // }
+
+    // handleClickResetGame(value) {
+
+    // }
 
     renderPawn(value) {
         return (
             <Pawn
                 value={value}
-                onClick={() => this.onClickFab(value)}
+                onClick={() => this.handleClickPawn(value)}
+                isDisabled={false}
             />
         );
     }
