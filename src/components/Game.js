@@ -45,11 +45,13 @@ class Game extends React.Component {
       checkButtonIsDisabled: true,
     };
 
+    // que faire ??
     Utils.answers = this.state.answers;
 
     this.choosePawnClick = this.choosePawnClick.bind(this);
     this.checkClick = this.checkClick.bind(this);
     this.resetRowClick = this.resetRowClick.bind(this);
+    this.resetGameClick = this.resetGameClick.bind(this);
   }
 
   choosePawnClick(value) {
@@ -79,7 +81,6 @@ class Game extends React.Component {
   }
 
   checkClick() {
-
     var currentRowValues = this.state.rowsValues[this.state.currentRow];
     console.log("Answers: " + this.state.answers);
     console.log("Current row: " + currentRowValues);
@@ -119,7 +120,6 @@ class Game extends React.Component {
     currentColumn = 0;
     choosePawnIsDisabled = false;
     checkButtonIsDisabled = true;
-    
   
     this.setState ({
       rowsValues,
@@ -129,9 +129,28 @@ class Game extends React.Component {
     })
   }
 
-  // handleClickResetGame(value) {
+  resetGameClick() {
+    var rowsValues = this.state.rowsValues;
+    var currentRow = this.state.currentRow;
+    var currentColumn = this.state.currentColumn;
+    var choosePawnIsDisabled = this.state.choosePawnIsDisabled;
+    var checkButtonIsDisabled = this.state.checkButtonIsDisabled;
+  
+    currentRow = 0;
+    currentColumn = 0;
+    choosePawnIsDisabled = false;
+    checkButtonIsDisabled = true;
 
-  // }
+    Object.keys(rowsValues).map(key => rowsValues[key].fill(''))
+
+    this.setState ({
+      rowsValues,
+      currentRow,
+      currentColumn,
+      choosePawnIsDisabled,
+      checkButtonIsDisabled
+    })
+  }
 
   render() {
     const { classes } = this.props;
@@ -153,6 +172,7 @@ class Game extends React.Component {
             choosePawnClick={this.choosePawnClick}
             checkClick={this.checkClick}
             resetRowClick={this.resetRowClick}
+            resetGameClick={this.resetGameClick}
           />
         </Grid>
       </Grid>

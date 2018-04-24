@@ -56,7 +56,7 @@ class Interactions extends React.Component {
                         </Button>
                     </Grid>
                     <Grid item xs={12}>
-                        <Button variant="raised" color="primary">Reset game</Button>
+                        <Button variant="raised" color="primary"onClick={() => this.props.resetGameClick()}>Reset game</Button>
                     </Grid>
                 </Grid>
             </div>
