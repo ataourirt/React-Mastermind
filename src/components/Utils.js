@@ -10,8 +10,14 @@ export default class Utils {
 
         params.forEach(function (element) {
 
+            // console.log("my element:" + element);
+
             Utils.answers.forEach(function (elm) {
-                if (elm == element) {
+
+                // console.log("elm=" + elm);
+
+                if (elm === element) {
+                    // console.log("count:" + count);
                     count++
                 }
             })
@@ -26,7 +32,7 @@ export default class Utils {
         var count = 0;
 
         params.forEach(function (element, idx) {
-            if (element == Utils.answers[idx]) {
+            if (element === Utils.answers[idx]) {
                 count++
             }
         });
@@ -35,6 +41,11 @@ export default class Utils {
     };
 
     static isWin(params) {
-        return Utils.numberOfGoodColors(params) == 4 && Utils.numberOfGoodPosition(params) == 4;
+        // console.log("good colors : ")
+        console.log("numberOfGoodColors : " +Utils.numberOfGoodColors(params));
+        console.log("numberOfGoodPosition : "+Utils.numberOfGoodPosition(params));
+
+        // console.log("//////////////////////////////////:");
+        return Utils.numberOfGoodColors(params) === 4 && Utils.numberOfGoodPosition(params) === 4;
     }
 };

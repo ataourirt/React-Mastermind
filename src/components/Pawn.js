@@ -5,23 +5,26 @@ import Button from 'material-ui/Button';
 import Icon from 'material-ui/Icon';
 
 const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
+    button: {
+        margin: theme.spacing.unit,
+    },
 });
 
-function Pawn(props) {
-  const { classes } = props;
-//   console.log(props)
-  return (
-      <Button variant="fab"  mini={true} className={classes.button} onClick={props.onClick} disabled={props.isDisabled}>
-        {props.value}
-      </Button>
-  );
+class Pawn extends React.Component {
+    render() {
+
+        const { classes } = this.props;
+
+        return (
+            <Button variant="fab" mini={true} className={classes.button} disabled={this.props.isDisabled} onClick={this.props.onClick}>
+                {this.props.value}
+            </Button>
+        )
+    }
 }
 
 Pawn.propTypes = {
-  classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(Pawn);

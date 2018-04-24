@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import App from './App';
 import Utils from './components/Utils';
 
 
 beforeAll(() => {
   Utils.answers = ['Red', 'Yellow', 'Blue', 'Orange'];
+  // Utils.answers = ['🎾', '🏀', '🏈','⚽'];
+  // Utils.answers = ['1', '2', '3','4'];
 });
 
 // it('renders without crashing', () => {
@@ -102,6 +104,8 @@ it('should return 4 when all colors are correctly positioned', () => {
 
 it('should return True when all colors are goods and are correctly positioned', () => {
   const game = ['Red', 'Yellow', 'Blue', 'Orange'];
+  // const game = ['🎾', '🏀', '🏈','⚽'];
+  // const game = ['1', '2', '3','4'];
 
   let result = Utils.isWin(game);
 

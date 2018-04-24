@@ -11,7 +11,6 @@ class Rows extends React.Component {
                         <Grid item xs={8} key={key}>
                             <Row
                                 pawns={this.props.values[key]}
-                                colorPawnClick={() => this.props.colorPawnClick()}
                             />
                         </Grid>
                     ))}
@@ -21,7 +20,6 @@ class Rows extends React.Component {
     }
 }
 
-///////////
 
 class Row extends React.Component {
 
@@ -33,7 +31,6 @@ class Row extends React.Component {
                         <Grid item xs={6} sm={3} key={id}>
                             <Pawn
                                 value={value}
-                                onClick={() => this.props.colorPawnClick()}
                                 isDisabled={false}
                             />
                         </Grid>

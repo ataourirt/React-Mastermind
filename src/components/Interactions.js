@@ -5,34 +5,12 @@ import Pawn from './Pawn';
 
 class Interactions extends React.Component {
 
-    // state = {
-    //     selectedPawnValue: null,
-    // }
-
-    // handleClickPawn(value) {
-    //     this.setState({
-    //         selectedPawnValue: value
-    //     })
-    // }
-
-    // handleClickCheck(value) {
-
-    // }
-
-    // handleClickResetRaw(value) {
-
-    // }
-
-    // handleClickResetGame(value) {
-
-    // }
-
     renderPawn(value) {
         return (
             <Pawn
                 value={value}
                 onClick={() => this.props.choosePawnClick(value)}
-                isDisabled={false}
+                isDisabled={this.props.choosePawnIsDisabled}
             />
         );
     }
@@ -41,25 +19,41 @@ class Interactions extends React.Component {
         return (
             <div>
                 <Grid container spacing={8}>
-                    <Grid item xs={12}>
-                        {this.renderPawn("⚽️")}
-                        {this.renderPawn("🏀")}
-                        {this.renderPawn("🏈")}
-                        {this.renderPawn("⚾️")}
+                    {/* <Grid item xs={12}>
+                        {this.renderPawn('⚽️')}
+                        {this.renderPawn('🏀')}
+                        {this.renderPawn('🏈')}
+                        {this.renderPawn('⚾️')}
                     </Grid>
                     <Grid item xs={12}>
-                        {this.renderPawn("🎾")}
-                        {this.renderPawn("🏐")}
-                        {this.renderPawn("🏉")}
-                        {this.renderPawn("🎱")}
+                        {this.renderPawn('🎾')}
+                        {this.renderPawn('🏐')}
+                        {this.renderPawn('🏉')}
+                        {this.renderPawn('🎱')}
+                    </Grid> */}
+                    <Grid item xs={12}>
+                        {this.renderPawn('1')}
+                        {this.renderPawn('2')}
+                        {this.renderPawn('3')}
+                        {this.renderPawn('4')}
+                    </Grid>
+                    <Grid item xs={12}>
+                        {this.renderPawn('5')}
+                        {this.renderPawn('6')}
+                        {this.renderPawn('7')}
+                        {this.renderPawn('8')}
                     </Grid>
                 </Grid>
                 <Grid container spacing={8}>
                     <Grid item xs={12}>
-                        <Button variant="raised" color="primary">Check</Button>
+                        <Button variant="raised" color="primary" disabled={this.props.checkButtonIsDisabled} onClick={() => this.props.checkClick()}>
+                            Check
+                        </Button>
                     </Grid>
                     <Grid item xs={12}>
-                        <Button variant="raised" color="primary">Reset row</Button>
+                        <Button variant="raised" color="primary" onClick={() => this.props.resetRowClick()}>
+                            Reset row
+                        </Button>
                     </Grid>
                     <Grid item xs={12}>
                         <Button variant="raised" color="primary">Reset game</Button>
