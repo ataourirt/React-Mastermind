@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Button from 'material-ui/Button';
-import Grid from './components/Grid';
+import Game from './components/Game';
 
 
 class App extends Component {
@@ -13,7 +13,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Mastermind</h1>
         </header>
-        <Grid />
+        <Game />
       </div>
     );
   }

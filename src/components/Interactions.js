@@ -5,15 +5,15 @@ import Pawn from './Pawn';
 
 class Interactions extends React.Component {
 
-    state = {
-        selectedPawnValue: null,
-    }
+    // state = {
+    //     selectedPawnValue: null,
+    // }
 
-    handleClickPawn(value) {
-        this.setState({
-            selectedPawnValue: value
-        })
-    }
+    // handleClickPawn(value) {
+    //     this.setState({
+    //         selectedPawnValue: value
+    //     })
+    // }
 
     // handleClickCheck(value) {
 
@@ -31,7 +31,7 @@ class Interactions extends React.Component {
         return (
             <Pawn
                 value={value}
-                onClick={() => this.handleClickPawn(value)}
+                onClick={() => this.props.choosePawnClick(value)}
                 isDisabled={false}
             />
         );
@@ -40,7 +40,7 @@ class Interactions extends React.Component {
     render() {
         return (
             <div>
-                <Grid container spacing={4}>
+                <Grid container spacing={8}>
                     <Grid item xs={12}>
                         {this.renderPawn("⚽️")}
                         {this.renderPawn("🏀")}
