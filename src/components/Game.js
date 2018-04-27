@@ -41,6 +41,8 @@ class Game extends React.Component {
         8: ['', '', '', ''],
         9: ['', '', '', '']
       },
+      goodPositionValues: ['','','','','','','','','',''],
+      goodColorsValues: ['','','','','','','','','',''],
       choosePawnIsDisabled: false,
       checkButtonIsDisabled: true,
     };
@@ -66,7 +68,7 @@ class Game extends React.Component {
     if (currentColumn < 3) {
       currentColumn++;
       choosePawnIsDisabled = false;
-    } else if (currentColumn == 3) {
+    } else if (currentColumn === 3) {
       choosePawnIsDisabled = true;
       checkButtonIsDisabled = false;
     }
@@ -82,18 +84,24 @@ class Game extends React.Component {
 
   checkClick() {
     var currentRowValues = this.state.rowsValues[this.state.currentRow];
-    console.log("Answers: " + this.state.answers);
-    console.log("Current row: " + currentRowValues);
+    // console.log("Answers: " + this.state.answers);
+    // console.log("Current row: " + currentRowValues);
 
     var isWin = Utils.isWin(currentRowValues);
 
-    console.log(isWin);
+    // console.log(isWin);
 
     if (!isWin) {
+
       var currentRow = this.state.currentRow;
       var currentColumn = this.state.currentColumn;
       var choosePawnIsDisabled = this.state.choosePawnIsDisabled;
       var checkButtonIsDisabled = this.state.checkButtonIsDisabled;
+      var goodColorsValues = this.state.goodColorsValues;
+      var goodPositionValues = this.state.goodPositionValues;
+
+      goodColorsValues[currentRow] = Utils.numberOfGoodColors(currentRowValues);
+      goodPositionValues[currentRow] = Utils.numberOfGoodPosition(currentRowValues);
 
       currentColumn = 0;
       currentRow++;
@@ -104,7 +112,9 @@ class Game extends React.Component {
         currentColumn,
         currentRow,
         choosePawnIsDisabled,
-        checkButtonIsDisabled
+        checkButtonIsDisabled,
+        goodColorsValues,
+        goodPositionValues
       })
     }
   }
@@ -113,40 +123,53 @@ class Game extends React.Component {
     var rowsValues = this.state.rowsValues;
     var currentRow = this.state.currentRow;
     var currentColumn = this.state.currentColumn;
-    var choosePawnIsDisabled = this.state.choosePawnIsDisabled;
-    var checkButtonIsDisabled = this.state.checkButtonIsDisabled;
 
     rowsValues[currentRow].fill('');
     currentColumn = 0;
-    choosePawnIsDisabled = false;
-    checkButtonIsDisabled = true;
+
+    this.resetButtons();
   
     this.setState ({
       rowsValues,
       currentColumn,
-      choosePawnIsDisabled,
-      checkButtonIsDisabled
     })
   }
 
   resetGameClick() {
+    this.resetDatas();
+    this.resetButtons();
+  }
+
+  resetDatas() {
     var rowsValues = this.state.rowsValues;
     var currentRow = this.state.currentRow;
     var currentColumn = this.state.currentColumn;
-    var choosePawnIsDisabled = this.state.choosePawnIsDisabled;
-    var checkButtonIsDisabled = this.state.checkButtonIsDisabled;
-  
+    var goodColorsValues = this.state.goodColorsValues;
+    var goodPositionValues = this.state.goodPositionValues;
+
     currentRow = 0;
     currentColumn = 0;
-    choosePawnIsDisabled = false;
-    checkButtonIsDisabled = true;
-
     Object.keys(rowsValues).map(key => rowsValues[key].fill(''))
+    goodColorsValues.fill('');
+    goodPositionValues.fill('');
 
     this.setState ({
       rowsValues,
       currentRow,
       currentColumn,
+      goodColorsValues,
+      goodPositionValues
+    })
+  }
+
+  resetButtons() {
+    var choosePawnIsDisabled = this.state.choosePawnIsDisabled;
+    var checkButtonIsDisabled = this.state.checkButtonIsDisabled;
+  
+    choosePawnIsDisabled = false;
+    checkButtonIsDisabled = true;
+
+    this.setState ({
       choosePawnIsDisabled,
       checkButtonIsDisabled
     })
@@ -156,16 +179,19 @@ class Game extends React.Component {
     const { classes } = this.props;
 
     return (
-      <Grid container className={classes.root} spacing={8}>
-        <Grid item xs={4}>
+      <Grid container spacing={16}>
+        <Grid item sm={4} id="rules" >
           <Rules />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item sm={4} id="game" >
           <Rows
-            values={this.state.rowsValues}
+            rowsValues={this.state.rowsValues}
+            // scoreValues={this.state.scoreValues}
+            goodColorsValues={this.state.goodColorsValues}
+            goodPositionValues={this.state.goodPositionValues}
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item sm={4} id="interactions">
           <Interactions
             choosePawnIsDisabled={this.state.choosePawnIsDisabled}
             checkButtonIsDisabled={this.state.checkButtonIsDisabled}

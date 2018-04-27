@@ -19,25 +19,13 @@ class Interactions extends React.Component {
         return (
             <div>
                 <Grid container spacing={8}>
-                    {/* <Grid item xs={12}>
-                        {this.renderPawn('⚽️')}
-                        {this.renderPawn('🏀')}
-                        {this.renderPawn('🏈')}
-                        {this.renderPawn('⚾️')}
-                    </Grid>
-                    <Grid item xs={12}>
-                        {this.renderPawn('🎾')}
-                        {this.renderPawn('🏐')}
-                        {this.renderPawn('🏉')}
-                        {this.renderPawn('🎱')}
-                    </Grid> */}
-                    <Grid item xs={12}>
+                    <Grid item sm={12}>
                         {this.renderPawn('1')}
                         {this.renderPawn('2')}
                         {this.renderPawn('3')}
                         {this.renderPawn('4')}
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item sm={12}>
                         {this.renderPawn('5')}
                         {this.renderPawn('6')}
                         {this.renderPawn('7')}
@@ -45,17 +33,17 @@ class Interactions extends React.Component {
                     </Grid>
                 </Grid>
                 <Grid container spacing={8}>
-                    <Grid item xs={12}>
+                    <Grid item sm={12}>
                         <Button variant="raised" color="primary" disabled={this.props.checkButtonIsDisabled} onClick={() => this.props.checkClick()}>
                             Check
                         </Button>
                     </Grid>
-                    <Grid item xs={12}>
-                        <Button variant="raised" color="primary" onClick={() => this.props.resetRowClick()}>
+                    <Grid item sm={12}>
+                        <Button variant="raised" color="secondary" onClick={() => this.props.resetRowClick()}>
                             Reset row
                         </Button>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item sm={12}>
                         <Button variant="raised" color="primary"onClick={() => this.props.resetGameClick()}>Reset game</Button>
                     </Grid>
                 </Grid>

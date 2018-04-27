@@ -1,5 +1,3 @@
-// import { REFUSED } from "dns";
-
 export default class Utils {
 
     static answers = [];
@@ -42,8 +40,8 @@ export default class Utils {
 
     static isWin(params) {
         // console.log("good colors : ")
-        console.log("numberOfGoodColors : " +Utils.numberOfGoodColors(params));
-        console.log("numberOfGoodPosition : "+Utils.numberOfGoodPosition(params));
+        // console.log("numberOfGoodColors : " +Utils.numberOfGoodColors(params));
+        // console.log("numberOfGoodPosition : "+Utils.numberOfGoodPosition(params));
 
         // console.log("//////////////////////////////////:");
         return Utils.numberOfGoodColors(params) === 4 && Utils.numberOfGoodPosition(params) === 4;

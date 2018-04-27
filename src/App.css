@@ -13,6 +13,29 @@
   padding: 20px;
   color: white;
 }
+/* #rules {
+  background-color: blue;
+}
+#game {
+  background-color: red;
+}
+#interactions {
+  background-color: green;
+}
+
+#row {
+  background-color: greenyellow;
+}
+#rows {
+  background-color: goldenrod;
+}
+
+#goodColors {
+  background-color: blueviolet;
+}
+#goodPositions {
+  background-color: darkcyan;
+} */
 
 .App-title {
   font-size: 1.5em;

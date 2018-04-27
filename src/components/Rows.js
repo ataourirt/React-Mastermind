@@ -5,20 +5,34 @@ import Grid from 'material-ui/Grid';
 class Rows extends React.Component {
     render() {
         return (
-            <div>
-                <Grid container spacing={8}>
-                    {Object.keys(this.props.values).map((key) => (
-                        <Grid item xs={8} key={key}>
+            <Grid container spacing={0} id="rows">
+                {Object.keys(this.props.rowsValues).map((key) => (
+                    //fugly
+                    <Grid container spacing={8} id="rows"> 
+                        <Grid item xl={4} xs={4}>
+                            <Grid container spacing={8} id="goodPositions">
+                                <Grid item xl={6} xs={6}>
+                                    {this.props.goodColorsValues[key]}
+                                </Grid>
+                                <Grid item xl={6} xs={6} id="goodColors">
+                                    {this.props.goodPositionValues[key]}
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <Grid item xl={8} xs={8} id="row">
                             <Row
-                                pawns={this.props.values[key]}
+                                pawns={this.props.rowsValues[key]}
                             />
                         </Grid>
-                    ))}
-                </Grid>
-            </div>
+                    </Grid>
+                ))}
+            </Grid>
         )
     }
 }
+
+
+
 
 
 class Row extends React.Component {
@@ -26,9 +40,9 @@ class Row extends React.Component {
     render() {
         return (
             <div>
-                <Grid container spacing={8}>
+                <Grid container spacing={16}>
                     {this.props.pawns.map((value, id) => (
-                        <Grid item xs={6} sm={3} key={id}>
+                        <Grid item sm={3} key={id}>
                             <Pawn
                                 value={value}
                                 isDisabled={false}
@@ -40,6 +54,5 @@ class Row extends React.Component {
         );
     }
 }
-
 
 export default Rows;
