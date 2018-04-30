@@ -1,23 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Button from 'material-ui/Button';
+// import Button from 'material-ui/Button';
+import classNames from 'classnames';
+import FontIcon from 'material-ui/FontIcon';
 
 const styles = theme => ({
-    button: {
-        margin: theme.spacing.unit,
-    },
+    // blueButton: {
+    //     margin: theme.spacing.unit,
+    //     backgroundColor: 'blue',
+    // },
+    // redButton: {
+    //     margin: theme.spacing.unit,
+    //     backgroundColor: 'red',
+    // },
+
+    // root: {
+    //     backgroundColor: 'red',
+    // },
 });
 
+
 class Pawn extends React.Component {
+
     render() {
 
         const { classes } = this.props;
 
         return (
-            <Button variant="fab" mini={true} className={classes.button} disabled={this.props.isDisabled} onClick={this.props.onClick}>
-                {this.props.value}
-            </Button>
+            <button disabled={this.props.isDisabled} onClick={this.props.onClick}>
+                <img src={this.props.img}/>
+            </button>
         )
     }
 }

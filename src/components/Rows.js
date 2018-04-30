@@ -8,7 +8,7 @@ class Rows extends React.Component {
             <Grid container spacing={0} id="rows">
                 {Object.keys(this.props.rowsValues).map((key) => (
                     //fugly
-                    <Grid container spacing={8} id="rows"> 
+                    <Grid container spacing={8} key={"score-" + key}> 
                         <Grid item xl={4} xs={4}>
                             <Grid container spacing={8} id="goodPositions">
                                 <Grid item xl={6} xs={6}>
@@ -44,8 +44,8 @@ class Row extends React.Component {
                     {this.props.pawns.map((value, id) => (
                         <Grid item sm={3} key={id}>
                             <Pawn
-                                value={value}
                                 isDisabled={false}
+                                img={value}
                             />
                         </Grid>
                     ))}

@@ -7,6 +7,17 @@ import Rules from './Rules';
 import Interactions from './Interactions';
 import Utils from './Utils';
 
+import yellow_button from './../icons/yellow_button.png';
+import green_button from './../icons/green_button.png';
+import red_button from './../icons/red_button.png';
+import purple_button from './../icons/purple_button.png';
+import pink_button from './../icons/pink_button.png';
+import blue_button from './../icons/blue_button.png';
+import turquoise_button from './../icons/turquoise_button.png';
+import orange_button from './../icons/orange_button.png';
+import white_button from './../icons/white_button.png';
+
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -18,6 +29,12 @@ const styles = theme => ({
   control: {
     padding: theme.spacing.unit * 2,
   },
+  red: {
+    backgroundColor: 'red'
+  },
+  blue: {
+    backgroundColor: 'blue'
+  }
 });
 
 class Game extends React.Component {
@@ -25,24 +42,23 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // answers: ['🎾', '🏀', '🏈','⚽'],
-      answers: ['1', '2', '3', '4'],
+      answers: [yellow_button, green_button, red_button, purple_button],
       currentRow: 0,
       currentColumn: 0,
       rowsValues: {
-        0: ['', '', '', ''],
-        1: ['', '', '', ''],
-        2: ['', '', '', ''],
-        3: ['', '', '', ''],
-        4: ['', '', '', ''],
-        5: ['', '', '', ''],
-        6: ['', '', '', ''],
-        7: ['', '', '', ''],
-        8: ['', '', '', ''],
-        9: ['', '', '', '']
+        0: [white_button, white_button, white_button, white_button],
+        1: [white_button, white_button, white_button, white_button],
+        2: [white_button, white_button, white_button, white_button],
+        3: [white_button, white_button, white_button, white_button],
+        4: [white_button, white_button, white_button, white_button],
+        5: [white_button, white_button, white_button, white_button],
+        6: [white_button, white_button, white_button, white_button],
+        7: [white_button, white_button, white_button, white_button],
+        8: [white_button, white_button, white_button, white_button],
+        9: [white_button, white_button, white_button, white_button]
       },
-      goodPositionValues: ['','','','','','','','','',''],
-      goodColorsValues: ['','','','','','','','','',''],
+      goodPositionValues: ['', '', '', '', '', '', '', '', '', ''],
+      goodColorsValues: ['', '', '', '', '', '', '', '', '', ''],
       choosePawnIsDisabled: false,
       checkButtonIsDisabled: true,
     };
@@ -53,10 +69,11 @@ class Game extends React.Component {
     this.choosePawnClick = this.choosePawnClick.bind(this);
     this.checkClick = this.checkClick.bind(this);
     this.resetRowClick = this.resetRowClick.bind(this);
-    this.resetGameClick = this.resetGameClick.bind(this);
+    this.newGameClick = this.newGameClick.bind(this);
   }
 
   choosePawnClick(value) {
+    console.log(value);
     var rowsValues = this.state.rowsValues;
     var currentRow = this.state.currentRow;
     var currentColumn = this.state.currentColumn;
@@ -89,7 +106,7 @@ class Game extends React.Component {
 
     var isWin = Utils.isWin(currentRowValues);
 
-    // console.log(isWin);
+    console.log(isWin);
 
     if (!isWin) {
 
@@ -124,20 +141,21 @@ class Game extends React.Component {
     var currentRow = this.state.currentRow;
     var currentColumn = this.state.currentColumn;
 
-    rowsValues[currentRow].fill('');
+    rowsValues[currentRow].fill(white_button);
     currentColumn = 0;
 
     this.resetButtons();
-  
-    this.setState ({
+
+    this.setState({
       rowsValues,
       currentColumn,
     })
   }
 
-  resetGameClick() {
+  newGameClick() {
     this.resetDatas();
     this.resetButtons();
+    this.createNewRandomAnswers();
   }
 
   resetDatas() {
@@ -149,11 +167,11 @@ class Game extends React.Component {
 
     currentRow = 0;
     currentColumn = 0;
-    Object.keys(rowsValues).map(key => rowsValues[key].fill(''))
+    Object.keys(rowsValues).map(key => rowsValues[key].fill(white_button))
     goodColorsValues.fill('');
     goodPositionValues.fill('');
 
-    this.setState ({
+    this.setState({
       rowsValues,
       currentRow,
       currentColumn,
@@ -165,28 +183,40 @@ class Game extends React.Component {
   resetButtons() {
     var choosePawnIsDisabled = this.state.choosePawnIsDisabled;
     var checkButtonIsDisabled = this.state.checkButtonIsDisabled;
-  
+
     choosePawnIsDisabled = false;
     checkButtonIsDisabled = true;
 
-    this.setState ({
+    this.setState({
       choosePawnIsDisabled,
       checkButtonIsDisabled
     })
   }
 
+  createNewRandomAnswers() {
+    var answers = this.state.answers;
+    var buttonsColors = [yellow_button, green_button,red_button, purple_button, pink_button, blue_button, turquoise_button, orange_button];
+
+    answers = (Utils.shuffle(buttonsColors)).slice(0, 4);
+
+    this.setState({
+      answers
+    })
+    
+  }
+
+
   render() {
-    const { classes } = this.props;
+    // const { classes } = this.props;
 
     return (
       <Grid container spacing={16}>
-        <Grid item sm={4} id="rules" >
+        <Grid item sm={4} className={this.props.classes.blue} >
           <Rules />
         </Grid>
         <Grid item sm={4} id="game" >
           <Rows
             rowsValues={this.state.rowsValues}
-            // scoreValues={this.state.scoreValues}
             goodColorsValues={this.state.goodColorsValues}
             goodPositionValues={this.state.goodPositionValues}
           />
@@ -198,7 +228,7 @@ class Game extends React.Component {
             choosePawnClick={this.choosePawnClick}
             checkClick={this.checkClick}
             resetRowClick={this.resetRowClick}
-            resetGameClick={this.resetGameClick}
+            newGameClick={this.newGameClick}
           />
         </Grid>
       </Grid>
